@@ -25,6 +25,7 @@ app.use(passport.session());
 
   
  app.use('/Shopistan',require('./routes/sellerRoutes'))
+  app.use('/Shopistan',require('./routes/promotionRoutes'))
   app.use('/',require('./routes/authRoutes'))
 // app.use('/Shopistan',require('./routes/shippingRoutes'))
 // app.use('/Shopistan',require('./routes/prdouctRoutes'))
