@@ -161,8 +161,25 @@ let deleteSeller = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
-
-
+//get all sellers with particular id
+ let getAllSellers = async (req, res) => {
+  //find all sellers with a particular id
+  try {
+    const { sellerId } = req.params;
+    const seller = await Seller.find({ sellerId });
+    if (!seller) {
+      return res.status(404).json({ msg: 'Seller not found' });
+    }
+    res.json({ msg: 'Seller found' });
+   
+    console.log(req.user);
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+}
+  
 module.exports = {
   signup,
   login,
@@ -170,6 +187,7 @@ module.exports = {
   updateSeller,
   deleteSeller,
   DecodeUser,
-  CheckIfSeller
+  CheckIfSeller,
+  getAllSellers
 
 };

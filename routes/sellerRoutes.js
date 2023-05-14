@@ -1,6 +1,6 @@
-const {signup, login, getSeller, updateSeller, deleteSeller, DecodeUser, CheckIfSeller } = require('../controllers/sellerController');
+const {signup, login, getSeller, updateSeller, deleteSeller, DecodeUser, CheckIfSeller, getAllSellers } = require('../controllers/sellerController');
 const sellerRoutes = require("express").Router();
-
+const {isLoggedIn} = require('../controllers/authController.js');
 //Signup Route
 sellerRoutes.post('/seller-signup', signup);
 
@@ -11,7 +11,7 @@ sellerRoutes.post('/seller-login', login);
 sellerRoutes.get('/getSeller/:sellerId',DecodeUser,CheckIfSeller, getSeller);
 
 //Update Seller Route
-sellerRoutes.put('/updateSeller/:sellerId',DecodeUser, CheckIfSeller, updateSeller);
+sellerRoutes.get('/updateSeller/:sellerId',isLoggedIn, getAllSellers);
 
 //Delete Seller Route
 sellerRoutes.delete('/delete-account/:sellerId',DecodeUser,CheckIfSeller, deleteSeller);
