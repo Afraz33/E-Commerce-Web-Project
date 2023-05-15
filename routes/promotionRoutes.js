@@ -1,8 +1,7 @@
 const {getAllPromotions, deletePromotion, updatePromotion, getPromotion, createPromotion} = require('../controllers/promotionController');
 const {isLoggedIn} = require('../controllers/authController.js');
-
-
 const promotionRoutes = require("express").Router();
+
 
 //Create Promotion Route
 promotionRoutes.post('/create-promotion',isLoggedIn, createPromotion);

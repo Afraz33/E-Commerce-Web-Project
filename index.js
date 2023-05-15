@@ -5,7 +5,7 @@ const connectDB = require('./config/db')
 // const upload = require("express-fileupload")
 const session = require('express-session');
 const passport = require('passport');
-
+const fileupload  = require('express-fileupload')
 
 connectDB()
 const app = express()
@@ -16,6 +16,9 @@ var bodyParser = require('body-parser')
 
 app.use(bodyParser.text({ type: '/' }));
 app.use(express.json())
+app.use(fileupload({
+  useTempFiles:true
+}))
 
 app.use(cors());
 app.use(express.urlencoded({extended:true}))
@@ -26,7 +29,24 @@ app.use(passport.session());
   
  app.use('/Shopistan',require('./routes/sellerRoutes'))
   app.use('/Shopistan',require('./routes/promotionRoutes'))
+app.use('/Shopistan',require('./routes/productRoutes'))
+
   app.use('/',require('./routes/authRoutes'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
 // app.use('/Shopistan',require('./routes/shippingRoutes'))
 // app.use('/Shopistan',require('./routes/prdouctRoutes'))
 //  app.use('/GigPilot',require('./routes/userRoutes'))
