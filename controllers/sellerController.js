@@ -62,42 +62,7 @@ let login = (req, res) => {
   });
 };
 
-//decode token
-let DecodeUser = (req , res , next)=>{
-    let token =  req.headers["authorization"].split(" ")[1];
-     
-    jwt.verify(token , process.env.SECRET_KEY , (err , decoded)=>{
-        if(!err){
-            
-            req.decoded = decoded;
-            
-            next();
-        }else{
-            res.status(403).json({token:token, message:"Not Authorized"})
-        }
-    }
-    )
-}
 
-
-//decode if the user is seller or not
-let CheckIfSeller = (req , res , next)=>{
-    const email = req.decoded.email;
-  
-    Seller.findOne({ email })
-      .then(seller => {
-        if (seller) {
-          // User is a seller
-          next();
-        } else {
-          // User is not a seller
-          res.status(403).json({"Message":"Not Authorized as Seller"})
-        }
-      })
-      .catch(err => {
-        res.status(500).json({"Message":"Error checking if user is seller", err: err})
-      });
-  }
   
 
 // READ - middleware to get a single seller by seller ID
@@ -161,24 +126,7 @@ let deleteSeller = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
-//get all sellers with particular id
- let getAllSellers = async (req, res) => {
-  //find all sellers with a particular id
-  try {
-    const { sellerId } = req.params;
-    const seller = await Seller.find({ sellerId });
-    if (!seller) {
-      return res.status(404).json({ msg: 'Seller not found' });
-    }
-    res.json({ msg: 'Seller found' });
-   
-    console.log(req.user);
-  }
-  catch (error) {
-    console.error(error);
-    res.status(500).send('Server Error');
-  }
-}
+
   
 module.exports = {
   signup,
@@ -186,8 +134,5 @@ module.exports = {
   getSeller,
   updateSeller,
   deleteSeller,
-  DecodeUser,
-  CheckIfSeller,
-  getAllSellers
-
+ 
 };

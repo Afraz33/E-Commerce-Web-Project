@@ -9,6 +9,7 @@ cloudinary.config({
   });
 
 
+//Add a product
 let addProduct = async (req, res) => {
     
     const file = req.files.image;
@@ -27,7 +28,8 @@ let addProduct = async (req, res) => {
             ProductDescription: req.body.ProductDescription,
             ProductPrice: req.body.ProductPrice,
             Discount: req.body.Discount,
-            ProductImage: result.url
+            ProductImage: result.url,
+            ProductQuantity: req.body.ProductQuantity
     })
     product.save().then((newProduct) => {
         res.status(201).json({ message: "Product created", product: newProduct });
@@ -64,10 +66,10 @@ let updateProduct = async (req, res) => {
         Discount: req.body.Discount,
         ProductImage: req.body.ProductImage
     }).then((result) => {
-        if (result.nModified > 0) {
+        if (result.Modified > 0) {
           res.status(200).json({ message: "Product updated" });
         } else {
-          res.status(404).json({ message: "Product not found" });
+          res.status(404).json({message: "Product updated" });
         }
       }).catch(err => {
         res.status(500).json({ message: "Error updating product", error: err });
@@ -77,12 +79,29 @@ let updateProduct = async (req, res) => {
 
 //get all products for a seller
 let getAllProducts = async (req, res) => {
-    Product.find({ sellerId: req.params.id }).then((products) => {
-        res.status(200).json({ products: products });
-      }).catch(err => {
-        res.status(500).json({ message: "Error getting products", error: err });
-      });
+  try {
+    const sellerId = req.params.sellerId;
+    
+    // find all promotions with the specified seller ID
+    const products = await Product.find({ sellerId });
+
+    if (!products) {
+      return res.status(404).json({ msg: 'products not found' });
     }
+
+    // extract the promotion codes from the promotion documents
+    else {
+
+    res.json({ products });}
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+};
+
+
+
 //get product by id
 let getProductById = async (req, res) => {
     Product.findOne({ ProductId: req.params.id }).then((product) => {
@@ -95,6 +114,8 @@ let getProductById = async (req, res) => {
         res.status(500).json({ message: "Error getting product", error: err });
       });
     }
+
+
 
 //get product by name
 let getProductByName = async (req, res) => {

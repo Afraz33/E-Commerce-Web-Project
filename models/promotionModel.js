@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const sellerSchema = new mongoose.Schema({
+const promotionSchema = new mongoose.Schema({
   promotionDescription: { type: String, required: true },
   promotionType: { type: String, required: true },
   promotionCode: { type: String, required: true, unique: true },
@@ -9,4 +9,4 @@ const sellerSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('Promotion', sellerSchema);
+module.exports = mongoose.model('Promotion', promotionSchema);

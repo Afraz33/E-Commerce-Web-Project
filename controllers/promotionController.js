@@ -1,3 +1,4 @@
+const Promotion = require('../models/promotionModel');
 // CREATE - middleware to create a new promotion
 let createPromotion = async (req, res, next) => {
     try {
@@ -14,15 +15,16 @@ let createPromotion = async (req, res, next) => {
       // save the promotion object to MongoDB
       await promotion.save();
   
-      // attach the promotion object to res.locals for future middleware functions to access
-      res.locals.promotion = promotion;
+     
   
-      next();
+      res.json(promotion);
     } catch (error) {
       console.error(error);
       res.status(500).send('Server Error');
     }
   };
+
+
   
   // READ - middleware to get a single promotion by promotion code
   let getPromotion = async (req, res) => {
@@ -43,6 +45,8 @@ let createPromotion = async (req, res, next) => {
     }
   };
   
+
+
   // UPDATE - middleware to update a promotion by promotion code
   let updatePromotion = async (req, res) => {
     try {
@@ -67,6 +71,9 @@ let createPromotion = async (req, res, next) => {
     }
   };
   
+
+
+
   // DELETE - middleware to delete a promotion by promotion code
   let deletePromotion = async (req, res) => {
     try {
@@ -86,13 +93,16 @@ let createPromotion = async (req, res, next) => {
     }
   };
 
+
+
+
   // READ - middleware to get all promotions for a seller by seller ID
 let getAllPromotions = async (req, res) => {
     try {
-      const { sellerId } = req.params;
+      const { promotionSellerId } = req.params;
   
       // find all promotions with the specified seller ID
-      const promotions = await Promotion.find({ sellerId });
+      const promotions = await Promotion.find({ promotionSellerId });
   
       if (!promotions) {
         return res.status(404).json({ msg: 'Promotions not found' });
@@ -109,10 +119,7 @@ let getAllPromotions = async (req, res) => {
     }
   };
   
-  module.exports = {
-    // other middleware functions...
-    getAllPromotions,
-  };
+ 
   
   
   module.exports = {

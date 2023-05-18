@@ -27,8 +27,8 @@ authRoutes.get('/google/callback',
 
 authRoutes.get('/protected', isLoggedIn,(req, res) => {
    
-    // res.send(`Hello ${req.user.displayName}`);
-    res.send("Hello");
+    
+    res.send("Authenticated");
   });
   
   authRoutes.get('/logout', (req, res) => {
