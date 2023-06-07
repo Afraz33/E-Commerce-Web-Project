@@ -12,9 +12,7 @@ const app = express()
 const port = process.env.PORT || 5000
 let cors = require("cors");
 // app.use(upload())
-var bodyParser = require('body-parser')
 
-app.use(bodyParser.text({ type: '/' }));
 app.use(express.json())
 app.use(fileupload({
   useTempFiles:true

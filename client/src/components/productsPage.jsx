@@ -44,7 +44,7 @@ function ViewProducts() {
       {products.map(product => (
           
 
-         <MDBCol md='4' key={product.ProductId}>
+         <MDBCol className='' md='4' key={product.ProductId}>
           <MDBCard>
             <MDBRipple
               rippleColor="light"
@@ -61,7 +61,7 @@ function ViewProducts() {
                 <div className="mask">
                   <div className="d-flex justify-content-start align-items-end h-100">
                     <h5>
-                      <span className="badge bg-primary ms-2">New</span>
+                      <span className="badge bg-success bg-opacity-50s ms-2">See Reviews</span>
                     </h5>
                   </div>
                 </div>

@@ -68,10 +68,12 @@ export default function NavbarDashboard() {
                   Promotions
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="bg-success bg-opacity-75">
-                 
+                <Link to="/addPromotion">
                   <MDBDropdownItem link>Add Promotions</MDBDropdownItem>
+                  </Link>
+                  <Link to="/promotions">
                   <MDBDropdownItem link>View Promotions</MDBDropdownItem>
-                  
+                  </Link>
                 </MDBDropdownMenu>
               </MDBDropdown>
             

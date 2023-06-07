@@ -4,19 +4,19 @@ const promotionRoutes = require("express").Router();
 
 
 //Create Promotion Route
-promotionRoutes.post('/create-promotion',DecodeUser,CheckIfSeller, createPromotion);
+promotionRoutes.post('/create-promotion', createPromotion);
 
 //Get Promotion Route
-promotionRoutes.get('/getPromotion/:sellerId/:promotionCode',DecodeUser,CheckIfSeller, getPromotion);
+promotionRoutes.get('/getPromotion/:sellerId/:promotionCode', getPromotion);
 
 //Update Promotion Route
-promotionRoutes.put('/updatePromotion/:promotionCode',DecodeUser,CheckIfSeller, updatePromotion);
+promotionRoutes.put('/updatePromotion/:promotionCode', updatePromotion);
 
 //Delete Promotion Route
-promotionRoutes.delete('/deletePromotion/:promotionCode',DecodeUser,CheckIfSeller, deletePromotion);
+promotionRoutes.delete('/deletePromotion/:promotionCode', deletePromotion);
 
 //Get All Promotions Route
-promotionRoutes.get('/getAllPromotions/:promotionSellerId',DecodeUser,CheckIfSeller, getAllPromotions);
+promotionRoutes.get('/getAllPromotions/:promotionSellerId', getAllPromotions);
 
 module.exports = promotionRoutes;
 

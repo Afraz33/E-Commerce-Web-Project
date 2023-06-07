@@ -1,5 +1,33 @@
 const Product = require('../models/prdouctModel.js');
 const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination:(req , file , cb)=>{
+        
+        cb(null , './content')
+    },
+    filename:(req , file , cb)=>{
+        cb(null ,Date.now()+file.originalname)
+    }
+})
+
+
+const filter = (req , file , cb)=>{
+    if(file.mimetype == 'application/jpeg' || file.mimetype == 'image/jpeg' || file.mimetype == 'image/png '){
+        cb(null , true)
+    }else{
+        cb(new Error("UnSupported file") , false)
+    }
+}
+
+
+const upload = multer({
+   storage:storage,
+   fileFilter:filter,
+    limits:1024*1024*10
+})
 
 // Configuration 
 cloudinary.config({
@@ -11,10 +39,10 @@ cloudinary.config({
 
 //Add a product
 let addProduct = async (req, res) => {
-    
+    console.log(req.body)
     const file = req.files.image;
     //get ProductId from Db and add 1 to it
-    Product.findOne({}, {}, { sort: { 'ProductId': -1 } }).then((lastProduct) => {
+    const lastProduct = await Product.findOne({}, {}, { sort: { 'ProductId': -1 } });
         let newId = 1;
         if (lastProduct) {
           newId = lastProduct.ProductId + 1;
@@ -37,7 +65,6 @@ let addProduct = async (req, res) => {
         res.status(500).json({ message: "Error creating product", error: err });
       });
     })
-})
 }
 
 
@@ -130,4 +157,4 @@ let getProductByName = async (req, res) => {
       });
     }
 
-module.exports = {addProduct, deleteProduct, updateProduct, getAllProducts, getProductById, getProductByName}
+module.exports = {addProduct, deleteProduct, updateProduct, getAllProducts, getProductById, getProductByName,upload}

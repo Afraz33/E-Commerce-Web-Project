@@ -110,7 +110,7 @@ let getAllPromotions = async (req, res) => {
   
       // extract the promotion codes from the promotion documents
       else {
-  
+      
       res.json({ promotions });}
 
     } catch (error) {

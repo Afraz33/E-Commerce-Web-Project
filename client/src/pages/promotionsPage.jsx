@@ -1,12 +1,12 @@
-import ViewProducts from "../components/productsPage";
 import Footer from "../components/footer";
 import NavbarDashboard from "../components/navbar/navbarDashboard";
+import PromotionList from "../components/promotions";
 
-export default function ProductsPage() {
+export default function PromotionsPage() {
     return (
         <>
         <NavbarDashboard />
-        <ViewProducts />
+        <PromotionList />
         <Footer />
         </>
     );
