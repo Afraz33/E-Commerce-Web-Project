@@ -41,6 +41,7 @@ cloudinary.config({
 let addProduct = async (req, res) => {
     console.log(req.body)
     const file = req.files.image;
+    console.log(file)
     //get ProductId from Db and add 1 to it
     const lastProduct = await Product.findOne({}, {}, { sort: { 'ProductId': -1 } });
         let newId = 1;
@@ -83,6 +84,7 @@ let deleteProduct = async (req, res) => {
 
 //update product
 let updateProduct = async (req, res) => {
+  
     Product.updateOne({ ProductId: req.params.id }, {
         ProductId: req.body.ProductId,
         sellerId: req.body.sellerId,
@@ -93,11 +95,9 @@ let updateProduct = async (req, res) => {
         Discount: req.body.Discount,
         ProductImage: req.body.ProductImage
     }).then((result) => {
-        if (result.Modified > 0) {
+        
           res.status(200).json({ message: "Product updated" });
-        } else {
-          res.status(404).json({message: "Product updated" });
-        }
+        
       }).catch(err => {
         res.status(500).json({ message: "Error updating product", error: err });
       });

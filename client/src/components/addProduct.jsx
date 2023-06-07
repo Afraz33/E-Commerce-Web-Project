@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MDBInput, MDBBtn, MDBContainer } from 'mdb-react-ui-kit';
-
+import axios from 'axios';
 const AddProduct = () => {
 
    
@@ -20,43 +20,31 @@ const AddProduct = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
     const formData = new FormData();
-        formData.append('sellerId', sellerId);
-        formData.append('ProductName', productName);
-        formData.append('ProductType', productType);
-        formData.append('ProductDescription', productDescription);
-        formData.append('ProductPrice', productPrice);
-        formData.append('Discount', discount);
-        // formData.append('image', productImage);
-        formData.append('ProductQuantity', productQuantity);
-       
-        try {
-          const response = await fetch('http://localhost:3001/Shopistan/uploadProduct', {
-            headers: {
-                'Content-Type': 'multipart/form-data', // Set the Content-Type header
-              },
-            method: 'POST',
-            body: JSON.stringify(formData)
-          });
-      
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message);
-          }
-      
-          const responseData = await response.json();
-          // Handle the response data as needed
-          console.log(responseData);
-        } catch (error) {
-          // Handle any errors that occurred during the request
-          console.error(error);
-        }
+    formData.append('image', productImage);
+    formData.append('sellerId', sellerId);
+    formData.append('ProductName', productName);
+    formData.append('ProductType', productType);
+    formData.append('ProductDescription', productDescription);
+    formData.append('ProductPrice', productPrice);
+    formData.append('Discount', discount);
+    formData.append('ProductQuantity', productQuantity);
+console.log({productType});
+    console.log(formData.get('image'));
+    
+    try{
+      const response = await axios.post('http://localhost:3001/Shopistan/uploadProduct',formData);
+      console.log(response.data);
+    }catch(error){
+      console.log(error);
+
+    }
+
   };
 
   return (
-    <MDBContainer>
-      <form onSubmit={handleSubmit}>
+    <MDBContainer style={{marginTop:'60px', height:'100%'}}>
+      <form className='bg-success bg-opacity-10' style={{borderColor:'green',width:'50%', margin:'auto',height:'70%'}} onSubmit={handleSubmit}>
       <MDBInput
           label="Seller Id"
           type="text"
@@ -76,10 +64,11 @@ const AddProduct = () => {
             value={productType}
             onChange={(e) => setProductType(e.target.value)}
           >
-            <option value="">Electronic</option>
-            <option value="Type 1">Home accessories</option>
-            <option value="Type 2">Ear Buds</option>
-            <option value="Type 3">Kids Wear</option>
+            <option value="">Types</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Home accessories">Home accessories</option>
+            <option value="Ear Buds">Ear Buds</option>
+            <option value="Kids Wear">Kids Wear</option>
           </select>
         </div>
         <MDBInput

@@ -48,23 +48,23 @@ export default function AddPromotions() {
   };
   return (
     <>
-      <div className="mx-auto gradient-custom mt-5" style={{ maxWidth: '800px', height: '400px' }}>
+      <div className="mx-auto  mt-5" style={{ maxWidth: '800px', height: '600px',backgroundColor: '#388E3C' }}>
         <MDBRow className="pt-3 mx-3">
           <MDBCol md="3">
-            <div className="text-center" style={{ marginTop: '50px', marginLeft: '10px' }}>
-              <MDBIcon fas icon="shipping-fast text-white" size="3x" />
-              <MDBTypography tag="h3" className="text-white">Welcome</MDBTypography>
-              <p className="white-text">You are 30 seconds away from compleating your order!</p>
+            <div className="text-center" style={{ marginTop: '100px', marginLeft: '10px' }}>
+              <MDBIcon fas icon="shipping-fast text-white" size="5x" />
+              <MDBTypography tag="h1" className="text-white">Welcome</MDBTypography>
+              <p className="white-text">Place promotions to reward your customers!</p>
             </div>
             <div className="text-center">
               <MDBBtn color="white" rounded className="back-button">Go back</MDBBtn>
             </div>
           </MDBCol>
-          <MDBCol md="9" className="justify-content-center">
+          <MDBCol md="9" className="justify-content-center " style={{ marginTop: '100px' }}>
             <MDBCard className="card-custom pb-4">
               <MDBCardBody className="mt-0 mx-5">
                 <div className="text-center mb-3 pb-2 mt-3">
-                  <MDBTypography tag="h4" style={{ color: '#495057' }} >Delivery Details</MDBTypography>
+                  <MDBTypography tag="h4" style={{ color: '#495057' }} >Promotion Details</MDBTypography>
                 </div>
 
                 <form className="mb-0" onSubmit={handleSubmit}>
@@ -99,7 +99,7 @@ export default function AddPromotions() {
                 
 
                   <div className="float-end">
-                    <MDBBtn type='submit' rounded style={{backgroundColor: '#0062CC'}}>Add Promotion</MDBBtn>
+                    <MDBBtn type='submit' rounded style={{backgroundColor: '#4CAF50'}}>Add Promotion</MDBBtn>
                   </div>
                 </form>
               </MDBCardBody>
