@@ -1,11 +1,17 @@
 
 import React from 'react';
-import { MDBCard, MDBCardBody, MDBCardTitle, MDBBtn } from 'mdb-react-ui-kit';
+import NavbarDashboard from '../components/navbar/navbarDashboard';
+import Footer from "../components/footer";
+import Tab from '../components/tab';
 
 export default function Dashboard(){
   return (
    
-      <h1 className='text-dark'>Seller Dashboard</h1>
+      <>
+        <NavbarDashboard />
+
+        <Footer />
+      </>
       
     
   );
