@@ -5,7 +5,7 @@ const AddProduct = () => {
 
    
         
-  const [sellerId, setSellerId] = useState('');
+  const [sellerId, setSellerId] = useState(localStorage.getItem('sellerId') || '');
   const [productName, setProductName] = useState('');
   const [productType, setProductType] = useState('');
   const [productDescription, setProductDescription] = useState('');
@@ -46,6 +46,7 @@ console.log({productType});
     <MDBContainer style={{marginTop:'60px', height:'100%'}}>
       <form className='bg-success bg-opacity-10' style={{borderColor:'green',width:'50%', margin:'auto',height:'70%'}} onSubmit={handleSubmit}>
       <MDBInput
+      disabled
           label="Seller Id"
           type="text"
           value={sellerId}

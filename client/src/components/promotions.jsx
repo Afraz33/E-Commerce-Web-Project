@@ -42,7 +42,7 @@ const PromotionList = () => {
   const getAllPromotions = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/Shopistan/getAllPromotions/3"
+        `http://localhost:3001/Shopistan/getAllPromotions/${localStorage.getItem("sellerId")}`
       );
       setPromotions(response.data.promotions);
     } catch (error) {
@@ -92,7 +92,7 @@ const PromotionList = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:3001/Shopistan/getPromotion/3/${searchPromotionCode}`
+        `http://localhost:3001/Shopistan/getPromotion/${localStorage.getItem("sellerId")}/${searchPromotionCode}`
       );
        setPromotions([response.data]);
       console.log(response.data);

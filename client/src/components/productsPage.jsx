@@ -41,7 +41,7 @@ function ViewProducts() {
     // Fetch products from the backend
     const getAllProducts = async () => {
     axios
-      .get("http://localhost:3001/Shopistan/getAllProducts/4")
+      .get(`http://localhost:3001/Shopistan/getAllProducts/${localStorage.getItem("sellerId")}`)
       .then((response) => {
         setProducts(response.data.products);
       })
@@ -115,7 +115,8 @@ function ViewProducts() {
                 <MDBCardImage
                   src={product.ProductImage}
                   fluid
-                  className="w-40"
+                  className=" h-40"
+                  style={{ height: "120px", width: "60%" }}
                 />
                 <a href="#!">
                   <div className="mask">

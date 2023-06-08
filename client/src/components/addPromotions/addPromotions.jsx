@@ -9,7 +9,7 @@ export default function AddPromotions() {
   const [promotionDescription, setPromotionDescription] = useState('');
   const [promotionType, setPromotionType] = useState('');
   const [promotionCode, setPromotionCode] = useState('');
-  const [promotionSellerId, setPromotionSellerId] = useState('');
+  const [promotionSellerId, setPromotionSellerId] = useState(localStorage.getItem("sellerId"));
 
   const handlePromotionDescriptionChange = (e) => {
     setPromotionDescription(e.target.value);
@@ -92,6 +92,7 @@ export default function AddPromotions() {
                     <MDBCol>
                       <MDBInput  label="Promotion Seller Id"
                   type="text"
+                  disabled
                   value={promotionSellerId}
                   onChange={handlePromotionSellerIdChange} />
                     </MDBCol>

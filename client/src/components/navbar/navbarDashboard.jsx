@@ -79,7 +79,9 @@ export default function NavbarDashboard() {
             
               </MDBNavbarItem>
               <MDBNavbarItem tag='h5' text="light" className="ms-3">
-                <MDBNavbarLink href="#">Profile</MDBNavbarLink>
+                <Link to="/Profile">
+                <MDBNavbarLink href="">Profile</MDBNavbarLink>
+                </Link>
               </MDBNavbarItem>
               <MDBNavbarItem outline color="light" className='' type='button'>
               <Link to="/logout">

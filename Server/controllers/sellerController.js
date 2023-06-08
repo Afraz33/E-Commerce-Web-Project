@@ -52,7 +52,7 @@ let login = (req, res) => {
           expiresIn: "24h",
         }
       );
-      res.status(200).json({ message: "Login successful", seller: seller, token: token });
+      res.status(200).json({ message: "Login successful", seller: seller, token: token,sellerId: seller.sellerId });
     } else {
       res.status(401).json({ message: "Login failed" });
     }
