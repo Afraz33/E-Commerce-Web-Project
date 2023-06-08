@@ -42,9 +42,11 @@ export default function NavbarDashboard() {
           <MDBCollapse show={showNavColor} navbar>
             <MDBNavbarNav className="me-auto mt-2 ms-4 mb-lg-0">
               <MDBNavbarItem className="active" text="light" tag='h5'>
+                <Link to="/orders">
                 <MDBNavbarLink   aria-current="page" href="#" >
-                  Home
+                View Orders
                 </MDBNavbarLink>
+                </Link>
               </MDBNavbarItem>
               <MDBNavbarItem text="light" tag='h5' className="ms-3">
               <MDBDropdown >

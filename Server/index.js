@@ -28,7 +28,7 @@ app.use(express.urlencoded({extended:true}))
  app.use('/Shopistan',require('./routes/sellerRoutes'))
   app.use('/Shopistan',require('./routes/promotionRoutes'))
 app.use('/Shopistan',require('./routes/productRoutes'))
-
+app.use('/Shopistan',require('./routes/orderRoutes'))
   // app.use('/',require('./routes/authRoutes'))
 
 
