@@ -10,7 +10,7 @@ export default function Dashboard(){
    
       <>
         <NavbarDashboard />
-         <h1 className='mt-5 text-success'>Welcome {localStorage.getItem("sellerName")}!</h1>
+         <h1 className='mt-5 text-success'>Welcome to Seller Panel!</h1>
          <PersonalProfile />
         <Footer />
       </>

@@ -98,6 +98,7 @@ let updateSeller = async (req, res) => {
     );
 
     if (!seller) {
+      console.log("not found")
       return res.status(404).json({ msg: 'Seller not found' });
     }
 

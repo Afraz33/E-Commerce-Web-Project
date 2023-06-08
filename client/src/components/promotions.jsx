@@ -40,10 +40,16 @@ const PromotionList = () => {
   }, []);
 
   const getAllPromotions = async () => {
+    const token = localStorage.getItem("token")
     try {
       const response = await axios.get(
         `http://localhost:3001/Shopistan/getAllPromotions/${localStorage.getItem("sellerId")}`
-      );
+        ,{
+       
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
       setPromotions(response.data.promotions);
     } catch (error) {
       console.error(error);
@@ -65,11 +71,17 @@ const PromotionList = () => {
 
   const handleUpdate = async () => {
     console.log(selectedPromotion.promotionCode);
+    const token = localStorage.getItem("token")
     try {
       await axios.put(
         `http://localhost:3001/Shopistan/updatePromotion/${selectedPromotion.promotionCode}`,
         selectedPromotion
-      );
+        ,{
+       
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
       getAllPromotions();
       setBasicModal(false);
     } catch (error) {
@@ -78,10 +90,16 @@ const PromotionList = () => {
   };
 
   const handleDelete = async (promotionCode) => {
+    const token = localStorage.getItem("token")
     try {
       await axios.delete(
         `http://localhost:3001/Shopistan/deletePromotion/${promotionCode}`
-      );
+        ,{
+       
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
       getAllPromotions();
     } catch (error) {
       console.error(error);
@@ -89,11 +107,17 @@ const PromotionList = () => {
   };
 
   const handleSearch = async (e) => {
+    const token = localStorage.getItem("token")
     e.preventDefault();
     try {
       const response = await axios.get(
         `http://localhost:3001/Shopistan/getPromotion/${localStorage.getItem("sellerId")}/${searchPromotionCode}`
-      );
+        ,{
+       
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
        setPromotions([response.data]);
       console.log(response.data);
     } catch (error) {

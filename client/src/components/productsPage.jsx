@@ -40,8 +40,15 @@ function ViewProducts() {
   
     // Fetch products from the backend
     const getAllProducts = async () => {
+      const token = localStorage.getItem("token")
     axios
-      .get(`http://localhost:3001/Shopistan/getAllProducts/${localStorage.getItem("sellerId")}`)
+      .get(`http://localhost:3001/Shopistan/getAllProducts/${localStorage.getItem("sellerId")}`,{
+       
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      
       .then((response) => {
         setProducts(response.data.products);
       })
@@ -58,9 +65,15 @@ function ViewProducts() {
   };
 
   const handleDelete = (productId) => {
-    // Delete product using the backend API
+   const token = localStorage.getItem("token");
     axios
-      .delete(`http://localhost:3001/Shopistan/deleteProduct/${productId}`)
+      .delete(`http://localhost:3001/Shopistan/deleteProduct/${productId}`
+      ,{
+       
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data.message);
         // Refresh the product list after deletion
@@ -75,7 +88,7 @@ function ViewProducts() {
 
   const handleUpdate = async () => {
    
-
+    const token = localStorage.getItem("token")
     console.log(selectedProduct.ProductId);
     try {
       const updatedProduct = {
@@ -90,7 +103,12 @@ function ViewProducts() {
       await axios.put(
         `http://localhost:3001/Shopistan/updateProduct/${selectedProduct.ProductId}`,
         updatedProduct
-      );
+        ,{
+       
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
       getAllProducts();
       setBasicModal(false);
     } catch (error) {

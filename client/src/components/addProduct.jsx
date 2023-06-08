@@ -31,9 +31,14 @@ const AddProduct = () => {
     formData.append('ProductQuantity', productQuantity);
 console.log({productType});
     console.log(formData.get('image'));
-    
+    const token = localStorage.getItem("token")
     try{
-      const response = await axios.post('http://localhost:3001/Shopistan/uploadProduct',formData);
+      const response = await axios.post('http://localhost:3001/Shopistan/uploadProduct',formData,{
+       
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
       console.log(response.data);
     }catch(error){
       console.log(error);

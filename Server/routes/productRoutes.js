@@ -5,16 +5,16 @@ const {addProduct,deleteProduct,updateProduct,getAllProducts,getProductById,getP
 
 
 //upload image
-productRoutes.post('/uploadProduct',addProduct)
+productRoutes.post('/uploadProduct',DecodeUser,CheckIfSeller,addProduct)
 
 //delete product
-productRoutes.delete('/deleteProduct/:id',deleteProduct)
+productRoutes.delete('/deleteProduct/:id',DecodeUser,CheckIfSeller,deleteProduct)
 
 //update product
-productRoutes.put('/updateProduct/:id', updateProduct)
+productRoutes.put('/updateProduct/:id',DecodeUser,CheckIfSeller, updateProduct)
 
 //get all products
-productRoutes.get('/getAllProducts/:sellerId', getAllProducts)
+productRoutes.get('/getAllProducts/:sellerId',DecodeUser,CheckIfSeller, getAllProducts)
 
 //get product by id
 productRoutes.get('/getProductById/:id',DecodeUser,CheckIfSeller, getProductById)

@@ -3,8 +3,8 @@ const colors = require('colors')
 const dotenv = require('dotenv').config
 const connectDB = require('./config/db')
 // const upload = require("express-fileupload")
-const session = require('express-session');
-const passport = require('passport');
+// const session = require('express-session');
+// const passport = require('passport');
 const fileupload  = require('express-fileupload')
 
 connectDB()
@@ -20,16 +20,16 @@ app.use(fileupload({
 
 app.use(cors());
 app.use(express.urlencoded({extended:true}))
-app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
   
  app.use('/Shopistan',require('./routes/sellerRoutes'))
   app.use('/Shopistan',require('./routes/promotionRoutes'))
 app.use('/Shopistan',require('./routes/productRoutes'))
 
-  app.use('/',require('./routes/authRoutes'))
+  // app.use('/',require('./routes/authRoutes'))
 
 
 
