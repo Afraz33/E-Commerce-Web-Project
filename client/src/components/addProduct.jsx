@@ -19,6 +19,9 @@ const AddProduct = () => {
   };
 
   const handleSubmit = async (event) => {
+    if (isNaN(productPrice) || isNaN(discount) || isNaN(productQuantity) || productPrice < 0 || discount < 0 || productQuantity < 0) {
+      alert("Invalid Input")
+      return;}
     event.preventDefault();
     const formData = new FormData();
     formData.append('image', productImage);

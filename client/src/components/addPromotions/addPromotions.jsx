@@ -12,19 +12,35 @@ export default function AddPromotions() {
   const [promotionSellerId, setPromotionSellerId] = useState(localStorage.getItem("sellerId"));
 
   const handlePromotionDescriptionChange = (e) => {
-    setPromotionDescription(e.target.value);
+    const value = e.target.value;
+    // Check if the value is not negative
+    if (value >= 0) {
+      setPromotionDescription(value);
+    }
   };
 
   const handlePromotionTypeChange = (e) => {
-    setPromotionType(e.target.value);
+    const value = e.target.value;
+    // Check if the value is not negative
+    if (value >= 0) {
+      setPromotionType(value);
+    }
   };
 
   const handlePromotionCodeChange = (e) => {
-    setPromotionCode(e.target.value);
+    const value = e.target.value;
+    // Check if the value is not negative
+    if (value >= 0) {
+      setPromotionCode(value);
+    }
   };
 
   const handlePromotionSellerIdChange = (e) => {
-    setPromotionSellerId(e.target.value);
+    const value = e.target.value;
+    // Check if the value is not negative
+    if (value >= 0) {
+      setPromotionSellerId(value);
+    }
   };
 
   const handleSubmit = async (e) => {
